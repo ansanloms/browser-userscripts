@@ -1,6 +1,6 @@
 # tampermonkey-scripts
 
-My Tampermonkey scripts.
+My [Tampermonkey](https://www.tampermonkey.net/) scripts.
 
 - [General: Remove ads](https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/general-remove-ads.user.js)
 - [Niconico: clean player](https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/niconico-clean-player.user.js)
