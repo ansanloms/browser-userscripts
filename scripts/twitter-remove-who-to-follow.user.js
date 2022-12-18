@@ -25,7 +25,7 @@
 })();
 
 (() => {
-  const resizeObserver = new ResizeObserver(() => {
+  const mutationObserver = new MutationObserver(() => {
     const timelineElement = document.querySelector(
       "[aria-label^='Timeline: '][aria-label$='’s Tweets'] > div",
     ) || document.querySelector(
@@ -71,18 +71,7 @@
     });
   });
 
-  const mutationObserver = new MutationObserver(() => {
-    const timelineElement =
-      document.querySelector("[aria-label='Home timeline']") ||
-      document.querySelector("[aria-label='ホームタイムライン']");
-
-    if (timelineElement) {
-      resizeObserver.observe(timelineElement);
-      mutationObserver.disconnect();
-    }
-  });
-
-  mutationObserver.observe(document, {
+  mutationObserver.observe(document.getElementById("react-root"), {
     childList: true,
     subtree: true,
   });
