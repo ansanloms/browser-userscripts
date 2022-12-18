@@ -6,7 +6,7 @@
 // @author       ansanloms
 // @match        http*://*/*
 // @grant        none
-// @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/general-remove-ads.users.js
+// @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/general-remove-ads.user.js
 // ==/UserScript==
 
 (() => {

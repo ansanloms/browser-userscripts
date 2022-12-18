@@ -2,7 +2,7 @@
 
 My Tampermonkey scripts.
 
-- [General: Remove ads](https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/general-remove-ads.users.js)
+- [General: Remove ads](https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/general-remove-ads.user.js)
 - [Niconico: clean player](https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/niconico-clean-player.user.js)
 - [Twitter: Remove ads](https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-ads.user.js)
 - [Twitter: Remove explore](https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-explore.user.js)
