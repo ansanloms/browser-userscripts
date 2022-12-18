@@ -47,4 +47,3 @@
 
   document.getElementsByTagName("head").item(0).appendChild(style);
 })();
-
