@@ -1,11 +1,12 @@
 // ==UserScript==
-// @name         Niconico: clean player.
+// @name         Niconico: clean player
 // @namespace    https://github.com/ansanloms/tampermonkey-scripts
 // @version      0.0.1
 // @description  ニコニコのプレイヤから不要なものを削除する。
 // @author       ansanloms
 // @match        https://www.nicovideo.jp/watch*
 // @grant        none
+// @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/niconico-clean-player.user.js
 // ==/UserScript==
 
 (() => {

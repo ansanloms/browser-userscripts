@@ -1,11 +1,12 @@
 // ==UserScript==
-// @name         Twitter: Remove 'Who to follow'.
+// @name         Twitter: Remove 'Who to follow'
 // @namespace    https://github.com/ansanloms/tampermonkey-scripts
 // @version      0.0.1
-// @description  Twitter: Remove 'Who to follow'.
+// @description  Twitter の「おすすめユーザー」を削除する。
 // @author       ansanloms
 // @match        https://twitter.com/*
 // @grant        none
+// @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-who-to-follow.user.js
 // ==/UserScript==
 
 (() => {

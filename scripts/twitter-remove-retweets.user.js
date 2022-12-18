@@ -1,11 +1,12 @@
 // ==UserScript==
-// @name         Twitter: Remove retweets.
+// @name         Twitter: Remove retweets
 // @namespace    https://github.com/ansanloms/tampermonkey-scripts
 // @version      0.0.1
-// @description  Twitter: Remove retweets.
+// @description  Twitter のリツイートを削除する。
 // @author       ansanloms
 // @match        https://twitter.com/*
 // @grant        none
+// @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-retweets.user.js
 // ==/UserScript==
 
 (() => {

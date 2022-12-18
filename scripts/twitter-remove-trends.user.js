@@ -1,11 +1,12 @@
 // ==UserScript==
-// @name         Twitter: Remove trends.
+// @name         Twitter: Remove trends
 // @namespace    https://github.com/ansanloms/tampermonkey-scripts
 // @version      0.0.1
-// @description  Twitter: Remove trends.
+// @description  Twitter のトレンドを削除する。
 // @author       ansanloms
 // @match        https://twitter.com/*
 // @grant        none
+// @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-trends.user.js
 // ==/UserScript==
 
 (() => {

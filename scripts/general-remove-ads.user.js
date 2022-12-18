@@ -1,11 +1,12 @@
 // ==UserScript==
-// @name         General: Remove ads.
+// @name         General: Remove ads
 // @namespace    https://github.com/ansanloms/tampermonkey-scripts
 // @version      0.0.1
-// @description  General: Remove ads.
+// @description  広告リンクを削除する。
 // @author       ansanloms
 // @match        http*://*/*
 // @grant        none
+// @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/general-remove-ads.users.js
 // ==/UserScript==
 
 (() => {
