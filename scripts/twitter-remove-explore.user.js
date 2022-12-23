@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Twitter: Remove explore.
+// @name         Twitter: Remove explore
 // @namespace    https://github.com/ansanloms/tampermonkey-scripts
 // @version      0.0.1
 // @description  Twitter の「調べたいものを検索」を削除する。
