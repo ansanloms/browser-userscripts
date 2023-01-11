@@ -16,13 +16,7 @@
         "a[href$='/analytics']",
       ),
     ].forEach((node) => {
-      if (
-        !["View Tweet analytics", "ツイートアナリティクスを表示"].find((text) =>
-          node.innerText === text
-        )
-      ) {
-        node.remove();
-      }
+      node.remove();
     });
   });
 

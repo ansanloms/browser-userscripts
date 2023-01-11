@@ -10,3 +10,4 @@ My [Tampermonkey](https://www.tampermonkey.net/) scripts.
 - [Twitter: Remove trends](https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-trends.user.js)
 - [Twitter: Remove 'Who to follow'](https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-who-to-follow.user.js)
 - [Twitter: Remove views](https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-views.user.js)
+- [Twitter: Remove 'Twitter Blue'](https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-blue.user.js)
