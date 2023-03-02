@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Twitter: Remove ads
 // @namespace    https://github.com/ansanloms/tampermonkey-scripts
-// @version      0.0.1
+// @version      0.0.2
 // @description  Twitter のプロモツイートを削除する。
 // @author       ansanloms
 // @match        https://twitter.com/*
@@ -18,7 +18,7 @@
     ].forEach((node) => {
       const article = node.closest("article");
       if (article) {
-        article.remove();
+        article.style = "display: none;";
       }
     });
   });
