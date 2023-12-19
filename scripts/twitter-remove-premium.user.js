@@ -1,12 +1,13 @@
 // ==UserScript==
-// @name         Twitter: Remove 'Twitter Blue'
+// @name         Twitter: Remove 'Premium'
 // @namespace    https://github.com/ansanloms/tampermonkey-scripts
-// @version      0.0.1
-// @description  Twitter Blue へのリンクを削除する。
+// @version      0.0.2
+// @description  Premium へのリンクを削除する。
 // @author       ansanloms
 // @match        https://twitter.com/*
 // @grant        none
-// @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-blue.user.js
+// @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-premium.user.js
+// @downloadURL  https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-premium.user.js
 // ==/UserScript==
 
 (() => {
@@ -14,7 +15,7 @@
   style.type = "text/css";
 
   style.innerText = `
-    [aria-label="Twitter Blue"]
+    [aria-label="Premium"]
     {
       display: none !important;
     }
