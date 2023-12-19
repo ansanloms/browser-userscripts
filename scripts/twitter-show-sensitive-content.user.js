@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Twitter: Show sensitive content
 // @namespace    https://github.com/ansanloms/tampermonkey-scripts
-// @version      0.0.2
+// @version      0.0.3
 // @description  Twitter のセンシティブコンテンツを表示する。
 // @author       ansanloms
 // @match        https://twitter.com/*
@@ -22,9 +22,12 @@
     );
 
     if (new URL(location.href).pathname.endsWith("/media")) {
-      document.querySelectorAll("span").forEach((elem) => {
-        if (elem.innerText.indexOf("Content warning:") === 0) {
-          elem.click();
+      document.querySelectorAll("div").forEach((elem) => {
+        if (
+          elem.innerText.indexOf("Warning:") === 0 && elem.nextElementSibling &&
+          elem.nextElementSibling.innerText === "Show"
+        ) {
+          elem.nextElementSibling.click();
         }
       });
     }
