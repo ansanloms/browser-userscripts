@@ -5,6 +5,7 @@
 // @description  Premium へのリンクを削除する。
 // @author       ansanloms
 // @match        https://twitter.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=twitter.com
 // @grant        none
 // @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-premium.user.js
 // @downloadURL  https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-premium.user.js
@@ -12,7 +13,6 @@
 
 (() => {
   const style = document.createElement("style");
-  style.type = "text/css";
 
   style.innerText = `
     [aria-label="Premium"]
@@ -21,5 +21,5 @@
     }
   `;
 
-  document.getElementsByTagName("head").item(0).appendChild(style);
+  document.getElementsByTagName("head").item(0)?.appendChild(style);
 })();

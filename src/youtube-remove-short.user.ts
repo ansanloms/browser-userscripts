@@ -7,6 +7,7 @@
 // @match        https://www.youtube.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=youtube.com
 // @grant        none
+// @downloadURL  https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/youtube-remove-short.user.js
 // @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/youtube-remove-short.user.js
 // ==/UserScript==
 
@@ -20,5 +21,5 @@
     }
   `;
 
-  document.getElementsByTagName("head").item(0).appendChild(style);
+  document.getElementsByTagName("head").item(0)?.appendChild(style);
 })();

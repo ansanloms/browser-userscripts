@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         YouTube: Replace player
 // @namespace    https://github.com/ansanloms/tampermonkey-scripts
-// @description  YouTube プレイヤーの置き換え。
 // @version      0.0.4
+// @description  YouTube プレイヤーの置き換え。
 // @author       ansanloms
 // @match        https://www.youtube.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=youtube.com
@@ -12,7 +12,7 @@
 // ==/UserScript==
 
 window.addEventListener("load", (event) => {
-  let id;
+  let id: string;
 
   const replacePlayer = () => {
     const url = new URL(location.href);
@@ -33,10 +33,10 @@ window.addEventListener("load", (event) => {
       newPlayer.style.width = "100%";
       newPlayer.style.aspectRatio = "16 / 9";
 
-      document.getElementById("player").innerHTML = "";
-      document.getElementById("player").appendChild(newPlayer);
+      document.getElementById("player")?.innerHTML = "";
+      document.getElementById("player")?.appendChild(newPlayer);
 
-      id = newId;
+      id = newId || "";
     }
   };
 

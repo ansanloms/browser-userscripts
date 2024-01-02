@@ -5,13 +5,14 @@
 // @description  Twitter の「おすすめユーザー」を削除する。
 // @author       ansanloms
 // @match        https://twitter.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=twitter.com
 // @grant        none
+// @downloadURL  https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-who-to-follow.user.js
 // @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-who-to-follow.user.js
 // ==/UserScript==
 
 (() => {
   const style = document.createElement("style");
-  style.type = "text/css";
 
   style.innerText = `
     [aria-label="おすすめユーザー"],
@@ -21,7 +22,7 @@
     }
   `;
 
-  document.getElementsByTagName("head").item(0).appendChild(style);
+  document.getElementsByTagName("head").item(0)?.appendChild(style);
 })();
 
 (() => {
@@ -44,7 +45,7 @@
       if (
         element.querySelector("h2") &&
         ["Who to follow", "おすすめユーザー"].find((text) =>
-          text === element.querySelector("h2").innerText.trim()
+          text === element.querySelector("h2")?.innerText.trim()
         )
       ) {
         element.style = "display: none !important;";
@@ -62,7 +63,7 @@
         element.querySelector("a[href^='/i/connect_people']") &&
         ["Show more", "さらに表示"].find((text) =>
           text ===
-            element.querySelector("a[href^='/i/connect_people']").innerText
+            element.querySelector("a[href^='/i/connect_people']")?.innerText
               .trim()
         )
       ) {

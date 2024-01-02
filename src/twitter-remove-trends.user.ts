@@ -5,7 +5,9 @@
 // @description  Twitter のトレンドを削除する。
 // @author       ansanloms
 // @match        https://twitter.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=twitter.com
 // @grant        none
+// @downloadURL  https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-trends.user.js
 // @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-trends.user.js
 // ==/UserScript==
 
@@ -21,5 +23,5 @@
     }
   `;
 
-  document.getElementsByTagName("head").item(0).appendChild(style);
+  document.getElementsByTagName("head").item(0)?.appendChild(style);
 })();

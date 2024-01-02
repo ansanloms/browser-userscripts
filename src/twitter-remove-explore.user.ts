@@ -5,13 +5,14 @@
 // @description  Twitter の「調べたいものを検索」を削除する。
 // @author       ansanloms
 // @match        https://twitter.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=twitter.com
 // @grant        none
+// @downloadURL  https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-explore.user.js
 // @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-explore.user.js
 // ==/UserScript==
 
 (() => {
   const style = document.createElement("style");
-  style.type = "text/css";
 
   style.innerText = `
     [aria-label="調べたいものを検索"],
@@ -21,5 +22,5 @@
     }
   `;
 
-  document.getElementsByTagName("head").item(0).appendChild(style);
+  document.getElementsByTagName("head").item(0)?.appendChild(style);
 })();

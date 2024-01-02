@@ -1,0 +1,22 @@
+{
+  "lint": {
+    "exclude": ["./scripts"]
+  },
+  "fmt": {
+    "proseWrap": "preserve",
+    "exclude": ["./scripts"]
+  },
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable"
+    ]
+  },
+  "tasks": {
+    "build": "deno run --allow-env --allow-run --allow-read --allow-write ./bin/build.ts"
+  },
+  "imports": {
+    "std/": "https://deno.land/std@0.210.0/",
+    "esbuild/": "https://deno.land/x/esbuild@v0.19.11/"
+  }
+}
