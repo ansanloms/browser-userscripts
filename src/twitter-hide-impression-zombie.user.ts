@@ -39,8 +39,6 @@
       )?.trim().match(/\d+/g)?.at(0) || "0",
     );
 
-    console.log({ reply, retweet, like });
-
     if (currentTweet) {
       document.querySelectorAll(
         "[aria-label='Timeline: Conversation'] [data-testid='tweet']:not([tabindex='-1']):not([style='display: none;'])",
@@ -56,8 +54,8 @@
           return;
         }
 
-        // バズってるツイートは非表示。
-        if (reply >= 100 || retweet >= 300 || like >= 1000) {
+        // リプライが多いツイートは非表示。
+        if (reply >= 100) {
           elem.style = "display: none;";
           return;
         }
