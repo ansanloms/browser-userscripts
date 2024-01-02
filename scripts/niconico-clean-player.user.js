@@ -5,7 +5,9 @@
 // @description  ニコニコのプレイヤから不要なものを削除する。
 // @author       ansanloms
 // @match        https://www.nicovideo.jp/watch*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=nicovideo.jp
 // @grant        none
+// @downloadURL  https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/niconico-clean-player.user.js
 // @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/niconico-clean-player.user.js
 // ==/UserScript==
 

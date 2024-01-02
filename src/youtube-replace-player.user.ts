@@ -33,7 +33,7 @@ window.addEventListener("load", (event) => {
       newPlayer.style.width = "100%";
       newPlayer.style.aspectRatio = "16 / 9";
 
-      document.getElementById("player")?.innerHTML = "";
+      document.getElementById("player")!.innerHTML = "";
       document.getElementById("player")?.appendChild(newPlayer);
 
       id = newId || "";
