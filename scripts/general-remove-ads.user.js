@@ -10,7 +10,7 @@
 // @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/general-remove-ads.user.js
 // ==/UserScript==
 
-(()=>{let e=document.createElement("style");e.innerText=`
+(()=>{(()=>{let e=document.createElement("style");e.innerText=`
     a[href*="popin.cc"],
     a[href*="news.nicovideo.jp"],
     a[href*="nxcount.com"],
@@ -25,4 +25,4 @@
     a[href*="beauty-health.today"] {
       display: none !important;
     }
-  `,document.getElementsByTagName("head").item(0)?.appendChild(e)})();
+  `,document.getElementsByTagName("head").item(0)?.appendChild(e)})();})();

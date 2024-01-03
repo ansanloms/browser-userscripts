@@ -11,8 +11,8 @@
 // @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/youtube-remove-short.user.js
 // ==/UserScript==
 
-(()=>{let e=document.createElement("style");e.type="text/css",e.innerText=`
+(()=>{(()=>{let e=document.createElement("style");e.type="text/css",e.innerText=`
     ytd-reel-shelf-renderer {
       display: none !important;
     }
-  `,document.getElementsByTagName("head").item(0)?.appendChild(e)})();
+  `,document.getElementsByTagName("head").item(0)?.appendChild(e)})();})();

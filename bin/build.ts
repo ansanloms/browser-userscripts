@@ -19,7 +19,6 @@ await esbuild.build({
   outdir: path.join(__dirname, "../scripts"),
   bundle: true,
   minify: true,
-  format: "esm",
 });
 
 await Promise.all(entryPoints.map(async (entryPoint) => {

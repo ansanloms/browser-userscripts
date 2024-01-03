@@ -11,74 +11,71 @@
 // @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-hide-impression-zombie.user.js
 // ==/UserScript==
 
-(() => {
-  const mutationObserver = new MutationObserver(() => {
-    const currentTweet = document.querySelector(
-      "[aria-label='Timeline: Conversation'] [data-testid='tweet'][tabindex='-1']",
-    );
+import mutation from "./utils/mutation.ts";
 
-    const currentTweetScreenname = currentTweet?.querySelector(
-      "[data-testid='User-Name'] a",
-    )?.href?.split("/").at(-1).trim();
+const hideTweet = (elem: Element) => {
+  const parentElem = elem.closest("[data-testid='cellInnerDiv']");
+  if (parentElem) {
+    parentElem.style = "display: none;";
+  }
+  elem.style = "display: none;";
+};
 
-    const reply = Number(
-      currentTweet?.querySelector("[data-testid='reply']")?.getAttribute(
-        "aria-label",
-      )?.trim().match(/\d+/g)?.at(0) || "0",
-    );
+mutation(() => {
+  const currentTweet = document.querySelector(
+    "[aria-label='Timeline: Conversation'] [data-testid='tweet'][tabindex='-1']",
+  );
 
-    const retweet = Number(
-      currentTweet?.querySelector("[data-testid='retweet']")?.getAttribute(
-        "aria-label",
-      )?.trim().match(/\d+/g)?.at(0) || "0",
-    );
+  const currentTweetScreenname = currentTweet?.querySelector(
+    "[data-testid='User-Name'] a",
+  )?.href?.split("/").at(-1).trim();
 
-    const like = Number(
-      currentTweet?.querySelector("[data-testid='like']")?.getAttribute(
-        "aria-label",
-      )?.trim().match(/\d+/g)?.at(0) || "0",
-    );
+  //const reply = Number(
+  //  currentTweet?.querySelector("[data-testid='reply']")?.getAttribute(
+  //    "aria-label",
+  //  )?.trim().match(/\d+/g)?.at(0) || "0",
+  //);
 
-    if (currentTweet) {
-      document.querySelectorAll(
-        "[aria-label='Timeline: Conversation'] [data-testid='tweet']:not([tabindex='-1']):not([style='display: none;'])",
-      ).forEach((elem) => {
-        const userNameElem = elem.querySelector("[data-testid='User-Name'] a");
+  //const retweet = Number(
+  //  currentTweet?.querySelector("[data-testid='retweet']")?.getAttribute(
+  //    "aria-label",
+  //  )?.trim().match(/\d+/g)?.at(0) || "0",
+  //);
 
-        const screenname = userNameElem?.href?.split(
-          "/",
-        ).at(-1).trim();
+  //const like = Number(
+  //  currentTweet?.querySelector("[data-testid='like']")?.getAttribute(
+  //    "aria-label",
+  //  )?.trim().match(/\d+/g)?.at(0) || "0",
+  //);
 
-        // 返信元と返信先が同一アカウントなら表示。
-        if (screenname && currentTweetScreenname === screenname) {
-          return;
-        }
+  if (currentTweet) {
+    document.querySelectorAll(
+      "[aria-label='Timeline: Conversation'] [data-testid='tweet']:not([tabindex='-1']):not([style='display: none;'])",
+    ).forEach((elem) => {
+      const userNameElem = elem.querySelector("[data-testid='User-Name'] a");
 
-        // リプライが多いツイートは非表示。
-        if (reply >= 100) {
-          elem.style = "display: none;";
-          return;
-        }
+      const screenname = userNameElem?.href?.split(
+        "/",
+      ).at(-1).trim();
 
-        // 認証済アカは非表示。
-        if (
-          userNameElem?.querySelector("[data-testid='icon-verified']")
-        ) {
-          elem.style = "display: none;";
-          return;
-        }
+      // 返信元と返信先が同一アカウントなら表示。
+      if (screenname && currentTweetScreenname === screenname) {
+        return;
+      }
 
-        // ユーザ名にアラビア文字が含まれる場合は非表示。
-        if (/[\p{scx=Arabic}]+/u.test(userNameElem?.innerText || "")) {
-          elem.style = "display: none;";
-          return;
-        }
-      });
-    }
-  });
+      // 認証済アカは非表示。
+      if (
+        userNameElem?.querySelector("[data-testid='icon-verified']")
+      ) {
+        hideTweet(elem);
+        return;
+      }
 
-  mutationObserver.observe(document.getElementById("react-root"), {
-    childList: true,
-    subtree: true,
-  });
-})();
+      // ユーザ名にアラビア文字が含まれる場合は非表示。
+      if (/[\p{scx=Arabic}]+/u.test(userNameElem?.innerText || "")) {
+        hideTweet(elem);
+        return;
+      }
+    });
+  }
+});

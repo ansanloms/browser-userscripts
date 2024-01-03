@@ -11,9 +11,9 @@
 // @downloadURL  https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-premium.user.js
 // ==/UserScript==
 
-(()=>{let e=document.createElement("style");e.innerText=`
+(()=>{(()=>{let e=document.createElement("style");e.innerText=`
     [aria-label="Premium"]
     {
       display: none !important;
     }
-  `,document.getElementsByTagName("head").item(0)?.appendChild(e)})();
+  `,document.getElementsByTagName("head").item(0)?.appendChild(e)})();})();

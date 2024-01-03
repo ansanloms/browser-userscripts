@@ -11,41 +11,34 @@
 // @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/youtube-replace-player.user.js
 // ==/UserScript==
 
-window.addEventListener("load", (event) => {
-  let id: string;
+import mutation from "./utils/mutation.ts";
 
-  const replacePlayer = () => {
-    const url = new URL(location.href);
+let id: string;
 
-    if (url.pathname !== "/watch") {
-      return;
-    }
+mutation(() => {
+  const url = new URL(location.href);
 
-    const newId = url.searchParams.get("v");
-    if (id === newId) {
-      return;
-    }
+  if (url.pathname !== "/watch") {
+    return;
+  }
 
-    if (document.querySelector("#player #error-screen,#replace-player")) {
-      const newPlayer = document.createElement("iframe");
-      newPlayer.id = "replace-player";
-      newPlayer.src = `https://www.youtube.com/embed/${newId}?autoplay=1`;
-      newPlayer.style.width = "100%";
-      newPlayer.style.aspectRatio = "16 / 9";
+  const newId = url.searchParams.get("v");
+  if (id === newId) {
+    return;
+  }
 
-      document.getElementById("player")!.innerHTML = "";
-      document.getElementById("player")?.appendChild(newPlayer);
+  if (
+    newId && document.querySelector("#player #error-screen,#replace-player")
+  ) {
+    const newPlayer = document.createElement("iframe");
+    newPlayer.id = "replace-player";
+    newPlayer.src = `https://www.youtube.com/embed/${newId}?autoplay=1`;
+    newPlayer.style.width = "100%";
+    newPlayer.style.aspectRatio = "16 / 9";
 
-      id = newId || "";
-    }
-  };
+    document.getElementById("player")!.innerHTML = "";
+    document.getElementById("player")?.appendChild(newPlayer);
 
-  const mutationObserver = new MutationObserver(replacePlayer);
-  mutationObserver.observe(
-    document.querySelector("body"),
-    {
-      childList: true,
-      subtree: true,
-    },
-  );
+    id = newId;
+  }
 });

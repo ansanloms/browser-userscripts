@@ -11,10 +11,10 @@
 // @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-trends.user.js
 // ==/UserScript==
 
-(()=>{let e=document.createElement("style");e.type="text/css",e.innerText=`
+(()=>{(()=>{let e=document.createElement("style");e.type="text/css",e.innerText=`
     [aria-label="\u30BF\u30A4\u30E0\u30E9\u30A4\u30F3: \u30C8\u30EC\u30F3\u30C9"],
     [aria-label="Timeline: Trending now"]
     {
       display: none !important;
     }
-  `,document.getElementsByTagName("head").item(0)?.appendChild(e)})();
+  `,document.getElementsByTagName("head").item(0)?.appendChild(e)})();})();

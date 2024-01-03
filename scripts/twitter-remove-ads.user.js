@@ -11,4 +11,4 @@
 // @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-ads.user.js
 // ==/UserScript==
 
-new MutationObserver(()=>{document.querySelectorAll("[data-testid='tweet']").forEach(e=>{e.style!=="display: none;"&&Array.from(e.querySelectorAll("span")).some(t=>t.innerText==="Ad")&&(e.style="display: none;")})}).observe(document.getElementById("react-root"),{childList:!0,subtree:!0});
+(()=>{new MutationObserver(()=>{document.querySelectorAll("[data-testid='tweet']").forEach(e=>{e.style!=="display: none;"&&Array.from(e.querySelectorAll("span")).some(t=>t.innerText==="Ad")&&(e.style="display: none;")})}).observe(document.getElementById("react-root"),{childList:!0,subtree:!0});})();

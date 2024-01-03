@@ -11,7 +11,7 @@
 // @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/niconico-clean-player.user.js
 // ==/UserScript==
 
-(()=>{let e=document.createElement("style");e.innerText=`
+(()=>{(()=>{let e=document.createElement("style");e.innerText=`
     /* \u30D7\u30EC\u30A4\u30E4\u306E\u30D8\u30C3\u30C0 */
     div.MainContainer-marquee,
 
@@ -42,4 +42,4 @@
     {
       display: none !important;
     }
-  `,document.getElementsByTagName("head").item(0)?.appendChild(e)})();
+  `,document.getElementsByTagName("head").item(0)?.appendChild(e)})();})();
