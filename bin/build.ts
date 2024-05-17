@@ -1,6 +1,6 @@
 import * as path from "std/path/mod.ts";
 import * as fs from "std/fs/mod.ts";
-import { globToRegExp } from "std/path/glob.ts";
+import { globToRegExp } from "std/path/mod.ts";
 import * as esbuild from "esbuild/mod.js";
 
 const __dirname = path.dirname(path.fromFileUrl(import.meta.url));

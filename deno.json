@@ -13,10 +13,10 @@
     ]
   },
   "tasks": {
-    "build": "deno run --allow-env --allow-run --allow-read --allow-write ./bin/build.ts"
+    "build": "deno run --allow-env --allow-run --allow-read --allow-write --allow-net ./bin/build.ts"
   },
   "imports": {
-    "std/": "https://deno.land/std@0.210.0/",
-    "esbuild/": "https://deno.land/x/esbuild@v0.19.11/"
+    "std/": "https://deno.land/std@0.224.0/",
+    "esbuild/": "https://deno.land/x/esbuild@v0.21.3/"
   }
 }
