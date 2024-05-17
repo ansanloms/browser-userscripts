@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         Twitter: Remove 'Premium'
 // @namespace    https://github.com/ansanloms/tampermonkey-scripts
-// @version      0.0.2
+// @version      0.0.3
 // @description  Premium へのリンクを削除する。
 // @author       ansanloms
-// @match        https://twitter.com/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=twitter.com
+// @match        https://x.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=x.com
 // @grant        none
 // @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-premium.user.js
 // @downloadURL  https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-premium.user.js
