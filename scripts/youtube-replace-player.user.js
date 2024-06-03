@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube: Replace player
 // @namespace    https://github.com/ansanloms/tampermonkey-scripts
-// @version      0.0.4
+// @version      0.0.5
 // @description  YouTube プレイヤーの置き換え。
 // @author       ansanloms
 // @match        https://www.youtube.com/*
@@ -11,4 +11,4 @@
 // @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/youtube-replace-player.user.js
 // ==/UserScript==
 
-(()=>{var o=r=>{let e=document.querySelector("body");e&&new MutationObserver(r).observe(e,{childList:!0,subtree:!0})},n=o;var a;n(()=>{let r=new URL(location.href);if(r.pathname!=="/watch")return;let e=r.searchParams.get("v");if(a!==e&&e&&document.querySelector("#player #error-screen,#replace-player")){let t=document.createElement("iframe");t.id="replace-player",t.src=`https://www.youtube.com/embed/${e}?autoplay=1`,t.style.width="100%",t.style.aspectRatio="16 / 9",document.getElementById("player").innerHTML="",document.getElementById("player")?.appendChild(t),a=e}});})();
+(()=>{var n=r=>{let t=document.querySelector("body");t&&new MutationObserver(r).observe(t,{childList:!0,subtree:!0})},o=n;var a;o(()=>{let r=new URL(location.href);if(r.pathname!=="/watch")return;let t=r.searchParams.get("v");if(a!==t&&document.querySelector("#player #error-screen:not([hidden])")){document.querySelector("#replace-player")?.remove();let e=document.createElement("iframe");e.id="replace-player",e.src=`https://www.youtube.com/embed/${t}?autoplay=1`,e.style.width="100%",e.style.aspectRatio="16 / 9",e.style.position="absolute",e.style.top=0,document.getElementById("player")?.appendChild(e),a=t}});})();

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube: Replace player
 // @namespace    https://github.com/ansanloms/tampermonkey-scripts
-// @version      0.0.4
+// @version      0.0.5
 // @description  YouTube プレイヤーの置き換え。
 // @author       ansanloms
 // @match        https://www.youtube.com/*
@@ -13,7 +13,7 @@
 
 import mutation from "./utils/mutation.ts";
 
-let id: string;
+let prevId: string;
 
 mutation(() => {
   const url = new URL(location.href);
@@ -22,23 +22,25 @@ mutation(() => {
     return;
   }
 
-  const newId = url.searchParams.get("v");
-  if (id === newId) {
+  const id = url.searchParams.get("v");
+  if (prevId === id) {
     return;
   }
 
   if (
-    newId && document.querySelector("#player #error-screen,#replace-player")
+    document.querySelector("#player #error-screen:not([hidden])")
   ) {
+    document.querySelector("#replace-player")?.remove();
+
     const newPlayer = document.createElement("iframe");
     newPlayer.id = "replace-player";
-    newPlayer.src = `https://www.youtube.com/embed/${newId}?autoplay=1`;
+    newPlayer.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
     newPlayer.style.width = "100%";
     newPlayer.style.aspectRatio = "16 / 9";
+    newPlayer.style.position = "absolute";
+    newPlayer.style.top = 0;
 
-    document.getElementById("player")!.innerHTML = "";
     document.getElementById("player")?.appendChild(newPlayer);
-
-    id = newId;
+    prevId = id;
   }
 });
