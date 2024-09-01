@@ -1,6 +1,5 @@
-import * as path from "std/path/mod.ts";
-import * as fs from "std/fs/mod.ts";
-import { globToRegExp } from "std/path/mod.ts";
+import * as path from "@std/path";
+import * as fs from "@std/fs";
 import * as esbuild from "esbuild/mod.js";
 
 const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
@@ -8,7 +7,7 @@ const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
 const entryPoints: string[] = [];
 for await (
   const walkEntry of fs.walk(".", {
-    match: [globToRegExp("**/src/*.user.ts")],
+    match: [path.globToRegExp("**/src/*.user.ts")],
   })
 ) {
   entryPoints.push(path.join(__dirname, "../", walkEntry.path));
@@ -32,7 +31,7 @@ await Promise.all(entryPoints.map(async (entryPoint) => {
       /^\/\/ \=\=UserScript\=\=[\s\S]*?\/\/ \=\=\/UserScript\=\=/,
       "gm",
     ),
-  ).at(0) || "";
+  )?.at(0) || "";
 
   await Deno.writeTextFile(
     dest,
