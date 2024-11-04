@@ -4,7 +4,7 @@
 // @version      0.0.1
 // @description  「おすすめのチャンネル」リンクを削除する。
 // @author       ansanloms
-// @match        https://www.twitch.tv//*
+// @match        https://www.twitch.tv/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=www.twitch.tv
 // @grant        none
 // @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitch-remove-followed-channels.user.js
