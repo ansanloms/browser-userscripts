@@ -16,8 +16,8 @@
     "build": "deno run --allow-env --allow-run --allow-read --allow-write --allow-net ./bin/build.ts"
   },
   "imports": {
-    "@std/fs": "jsr:@std/fs@^1.0.2",
-    "@std/path": "jsr:@std/path@^1.0.3",
-    "esbuild/": "https://deno.land/x/esbuild@v0.23.1/"
+    "@std/fs": "jsr:@std/fs@1.0.5",
+    "@std/path": "jsr:@std/path@1.0.8",
+    "esbuild/": "https://deno.land/x/esbuild@v0.24.0/"
   }
 }
