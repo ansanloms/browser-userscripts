@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Twitter: Remove explore
 // @namespace    https://github.com/ansanloms/tampermonkey-scripts
-// @version      0.0.2
+// @version      0.0.3
 // @description  Twitter の左メニューを削除する。
 // @author       ansanloms
 // @match        https://x.com/*
@@ -20,7 +20,7 @@
     [aria-label="\u30D7\u30EC\u30DF\u30A2\u30E0"],
     [aria-label="Premium"],
     [aria-label="\u8A8D\u8A3C\u6E08\u307F\u7D44\u7E54"],
-    [aria-label="Verified Orgs"]
+    [aria-label="Verified Orgs"],
     [aria-label="\u30D3\u30B8\u30CD\u30B9"],
     [aria-label="Business"]
     {
