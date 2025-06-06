@@ -15,7 +15,10 @@ import mutation from "./utils/mutation.ts";
 
 let prevId: string;
 
-mutation(() => {
+const sleep = (time: number) =>
+  new Promise<void>((resolve) => setTimeout(resolve, time));
+
+mutation(async () => {
   const url = new URL(location.href);
 
   if (url.pathname !== "/watch") {
@@ -38,9 +41,14 @@ mutation(() => {
     newPlayer.style.width = "100%";
     newPlayer.style.aspectRatio = "16 / 9";
     newPlayer.style.position = "absolute";
-    newPlayer.style.top = 0;
+    newPlayer.style.top = "0";
 
     document.getElementById("player")?.appendChild(newPlayer);
-    prevId = id;
+    if (id) {
+      prevId = id;
+    }
+
+    await sleep(500);
+    newPlayer.contentWindow?.location.reload();
   }
 });

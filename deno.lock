@@ -1,20 +1,19 @@
 {
-  "version": "4",
+  "version": "5",
   "specifiers": {
-    "jsr:@std/fs@^1.0.10": "1.0.10",
-    "jsr:@std/path@1.0.8": "1.0.8",
-    "jsr:@std/path@^1.0.7": "1.0.8",
-    "jsr:@std/path@^1.0.8": "1.0.8"
+    "jsr:@std/fs@^1.0.10": "1.0.18",
+    "jsr:@std/path@^1.0.8": "1.1.0",
+    "jsr:@std/path@^1.1.0": "1.1.0"
   },
   "jsr": {
-    "@std/fs@1.0.10": {
-      "integrity": "bf041f9d7a0a460817f0421be8946d0e06011b3433e6c83a215628de5e3c7c2c",
+    "@std/fs@1.0.18": {
+      "integrity": "24bcad99eab1af4fde75e05da6e9ed0e0dce5edb71b7e34baacf86ffe3969f3a",
       "dependencies": [
-        "jsr:@std/path@^1.0.8"
+        "jsr:@std/path@^1.1.0"
       ]
     },
-    "@std/path@1.0.8": {
-      "integrity": "548fa456bb6a04d3c1a1e7477986b6cffbce95102d0bb447c67c4ee70e0364be"
+    "@std/path@1.1.0": {
+      "integrity": "ddc94f8e3c275627281cbc23341df6b8bcc874d70374f75fec2533521e3d6886"
     }
   },
   "remote": {
