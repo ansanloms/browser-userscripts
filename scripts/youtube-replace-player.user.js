@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube: Replace player
 // @namespace    https://github.com/ansanloms/tampermonkey-scripts
-// @version      0.0.5
+// @version      0.0.6
 // @description  YouTube プレイヤーの置き換え。
 // @author       ansanloms
 // @match        https://www.youtube.com/*
