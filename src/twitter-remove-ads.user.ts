@@ -14,19 +14,26 @@
 (() => {
   const mutationObserver = new MutationObserver(() => {
     document.querySelectorAll("[data-testid='tweet']").forEach((tweet) => {
+      if (!(tweet instanceof HTMLElement)) {
+        return;
+      }
+
       if (
-        tweet.style !== "display: none;" &&
+        tweet.style.display !== "none" &&
         Array.from(tweet.querySelectorAll("span")).some((v) =>
           v.innerText === "Ad"
         )
       ) {
-        tweet.style = "display: none;";
+        tweet.style.display = "none";
       }
     });
   });
 
-  mutationObserver.observe(document.getElementById("react-root"), {
-    childList: true,
-    subtree: true,
-  });
+  const reactRoot = document.getElementById("react-root");
+  if (reactRoot) {
+    mutationObserver.observe(reactRoot, {
+      childList: true,
+      subtree: true,
+    });
+  }
 })();

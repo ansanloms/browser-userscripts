@@ -38,42 +38,53 @@
     }
 
     [...timelineElement.children].forEach((element, index) => {
-      if (element.style === "display: none !important;") {
+      if (!(element instanceof HTMLElement)) {
         return;
       }
 
+      if (element.style.display === "none") {
+        return;
+      }
+
+      const h2 = element.querySelector("h2");
       if (
-        element.querySelector("h2") &&
+        h2 instanceof HTMLElement &&
         ["Who to follow", "おすすめユーザー"].find((text) =>
-          text === element.querySelector("h2")?.innerText.trim()
+          text === h2.innerText.trim()
         )
       ) {
-        element.style = "display: none !important;";
+        element.style.display = "none";
+        element.style.setProperty("display", "none", "important");
       }
 
       if (element.querySelector("[role='button'][aria-label^='Follow @']")) {
-        element.style = "display: none !important;";
+        element.style.display = "none";
+        element.style.setProperty("display", "none", "important");
       }
 
       if (element.querySelector("[role='button'][aria-label^='フォロー @']")) {
-        element.style = "display: none !important;";
+        element.style.display = "none";
+        element.style.setProperty("display", "none", "important");
       }
 
+      const connectLink = element.querySelector("a[href^='/i/connect_people']");
       if (
-        element.querySelector("a[href^='/i/connect_people']") &&
+        connectLink instanceof HTMLElement &&
         ["Show more", "さらに表示"].find((text) =>
-          text ===
-            element.querySelector("a[href^='/i/connect_people']")?.innerText
-              .trim()
+          text === connectLink.innerText.trim()
         )
       ) {
-        element.style = "display: none !important;";
+        element.style.display = "none";
+        element.style.setProperty("display", "none", "important");
       }
     });
   });
 
-  mutationObserver.observe(document.getElementById("react-root"), {
-    childList: true,
-    subtree: true,
-  });
+  const reactRoot = document.getElementById("react-root");
+  if (reactRoot) {
+    mutationObserver.observe(reactRoot, {
+      childList: true,
+      subtree: true,
+    });
+  }
 })();

@@ -25,8 +25,11 @@
     });
   });
 
-  mutationObserver.observe(document.getElementById("react-root"), {
-    childList: true,
-    subtree: true,
-  });
+  const reactRoot = document.getElementById("react-root");
+  if (reactRoot) {
+    mutationObserver.observe(reactRoot, {
+      childList: true,
+      subtree: true,
+    });
+  }
 })();

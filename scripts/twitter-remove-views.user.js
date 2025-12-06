@@ -11,4 +11,4 @@
 // @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-remove-views.user.js
 // ==/UserScript==
 
-(()=>{new MutationObserver(()=>{[...document.querySelectorAll("a[href$='/analytics']")].forEach(e=>{e.remove()})}).observe(document.getElementById("react-root"),{childList:!0,subtree:!0});})();
+(()=>{(()=>{let t=new MutationObserver(()=>{[...document.querySelectorAll("a[href$='/analytics']")].forEach(r=>{r.remove()})}),e=document.getElementById("react-root");e&&t.observe(e,{childList:!0,subtree:!0})})();})();

@@ -60,6 +60,10 @@
       );
 
       for (const item of [...items]) {
+        if (!(item instanceof HTMLAnchorElement)) {
+          continue;
+        }
+
         const itemId = (new URL(item.href || "https://example.com")).pathname
           .split("/").at(3);
         if (!itemId) {
@@ -81,7 +85,10 @@
           ];
 
           for (const _ of list) {
-            document.querySelector("button[aria-label='Next slide']")?.click();
+            const nextButton = document.querySelector("button[aria-label='Next slide']");
+            if (nextButton instanceof HTMLElement) {
+              nextButton.click();
+            }
             await sleep(500);
           }
 
@@ -94,7 +101,10 @@
             }
           });
 
-          document.querySelector("button[aria-label='Close']")?.click();
+          const closeButton = document.querySelector("button[aria-label='Close']");
+          if (closeButton instanceof HTMLElement) {
+            closeButton.click();
+          }
           await sleep(1000);
         } else {
           const url = new URL(
@@ -111,7 +121,7 @@
 
     const getAllImageUrls = async (
       ignoreItemIds: Set<string> = new Set(),
-    ) => {
+    ): Promise<Set<{ name: string; url: string }>> => {
       const { imageUrls, itemIds } = await getImageUrls(ignoreItemIds);
       if (isEndOfPage()) {
         return imageUrls;

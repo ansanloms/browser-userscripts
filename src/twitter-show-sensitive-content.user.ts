@@ -15,7 +15,7 @@
   const mutationObserver = new MutationObserver(() => {
     document.querySelectorAll("[data-testid='tweet'] [role='button']").forEach(
       (elem) => {
-        if (elem.innerText === "Show") {
+        if (elem instanceof HTMLElement && elem.innerText === "Show") {
           elem.click();
         }
       },
@@ -23,18 +23,27 @@
 
     if (new URL(location.href).pathname.endsWith("/media")) {
       document.querySelectorAll("div").forEach((elem) => {
+        if (!(elem instanceof HTMLElement)) {
+          return;
+        }
+
+        const nextSibling = elem.nextElementSibling;
         if (
-          elem.innerText.indexOf("Warning:") === 0 && elem.nextElementSibling &&
-          elem.nextElementSibling.innerText === "Show"
+          elem.innerText.indexOf("Warning:") === 0 &&
+          nextSibling instanceof HTMLElement &&
+          nextSibling.innerText === "Show"
         ) {
-          elem.nextElementSibling.click();
+          nextSibling.click();
         }
       });
     }
   });
 
-  mutationObserver.observe(document.getElementById("react-root"), {
-    childList: true,
-    subtree: true,
-  });
+  const reactRoot = document.getElementById("react-root");
+  if (reactRoot) {
+    mutationObserver.observe(reactRoot, {
+      childList: true,
+      subtree: true,
+    });
+  }
 })();

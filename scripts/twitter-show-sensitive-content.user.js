@@ -11,4 +11,4 @@
 // @updateURL    https://raw.githubusercontent.com/ansanloms/tampermonkey-scripts/main/scripts/twitter-show-sensitive-content.user.js
 // ==/UserScript==
 
-(()=>{new MutationObserver(()=>{document.querySelectorAll("[data-testid='tweet'] [role='button']").forEach(e=>{e.innerText==="Show"&&e.click()}),new URL(location.href).pathname.endsWith("/media")&&document.querySelectorAll("div").forEach(e=>{e.innerText.indexOf("Warning:")===0&&e.nextElementSibling&&e.nextElementSibling.innerText==="Show"&&e.nextElementSibling.click()})}).observe(document.getElementById("react-root"),{childList:!0,subtree:!0});})();
+(()=>{(()=>{let i=new MutationObserver(()=>{document.querySelectorAll("[data-testid='tweet'] [role='button']").forEach(e=>{e instanceof HTMLElement&&e.innerText==="Show"&&e.click()}),new URL(location.href).pathname.endsWith("/media")&&document.querySelectorAll("div").forEach(e=>{if(!(e instanceof HTMLElement))return;let t=e.nextElementSibling;e.innerText.indexOf("Warning:")===0&&t instanceof HTMLElement&&t.innerText==="Show"&&t.click()})}),n=document.getElementById("react-root");n&&i.observe(n,{childList:!0,subtree:!0})})();})();
