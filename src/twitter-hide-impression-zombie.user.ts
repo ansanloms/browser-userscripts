@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Twitter: Hide impression zombie
 // @namespace    https://github.com/ansanloms/tampermonkey-scripts
-// @version      0.0.3
+// @version      0.0.4
 // @description  Twitter のインプレゾンビを非表示する。
 // @author       ansanloms
 // @match        https://x.com/*
@@ -15,10 +15,33 @@ import mutation from "./utils/mutation.ts";
 
 const hideTweet = (elem: Element) => {
   const parentElem = elem.closest("[data-testid='cellInnerDiv']");
-  if (parentElem) {
-    parentElem.style = "display: none;";
+  if (parentElem instanceof HTMLElement) {
+    parentElem.style.display = "none";
   }
-  elem.style = "display: none;";
+  if (elem instanceof HTMLElement) {
+    elem.style.display = "none";
+  }
+};
+
+const isImpressionZombie = ({ count, isVerified, isArabic, isJapanese }: {
+  count: number;
+  isVerified: boolean;
+  isArabic: boolean;
+  isJapanese: boolean;
+}) => {
+  if (isArabic) {
+    return true;
+  }
+
+  if (isVerified && !isJapanese) {
+    return true;
+  }
+
+  if (isVerified && count >= 2) {
+    return true;
+  }
+
+  return false;
 };
 
 mutation(() => {
@@ -26,9 +49,12 @@ mutation(() => {
     "[aria-label='Timeline: Conversation'] [data-testid='tweet'][tabindex='-1']",
   );
 
-  const currentTweetScreenname = currentTweet?.querySelector(
+  const currentTweetUsernameElem = currentTweet?.querySelector(
     "[data-testid='User-Name'] a",
-  )?.href?.split("/").at(-1).trim();
+  );
+  const currentTweetScreenname = currentTweetUsernameElem instanceof HTMLAnchorElement
+    ? currentTweetUsernameElem.href?.split("/").at(-1)?.trim() ?? ""
+    : "";
 
   //const reply = Number(
   //  currentTweet?.querySelector("[data-testid='reply']")?.getAttribute(
@@ -49,30 +75,73 @@ mutation(() => {
   //);
 
   if (currentTweet) {
-    document.querySelectorAll(
-      "[aria-label='Timeline: Conversation'] [data-testid='tweet']:not([tabindex='-1']):not([style='display: none;'])",
-    ).forEach((elem) => {
-      const userNameElem = elem.querySelector("[data-testid='User-Name'] a");
+    const tweets = Array.from(
+      document.querySelectorAll(
+        "[aria-label='Timeline: Conversation'] [data-testid='tweet']:not([tabindex='-1']):not([style='display: none;'])",
+      ),
+    );
 
-      const screenname = userNameElem?.href?.split(
-        "/",
-      ).at(-1).trim();
+    const userReply = new Map<
+      string,
+      {
+        count: number;
+        isVerified: boolean;
+        isArabic: boolean;
+        isJapanese: boolean;
+      }
+    >();
+
+    tweets.forEach((elem) => {
+      const usernameElem = elem.querySelector("[data-testid='User-Name'] a");
+
+      if (!(usernameElem instanceof HTMLAnchorElement)) {
+        return;
+      }
+
+      const screenname = usernameElem.href?.split("/").at(-1)?.trim() ?? "";
+      const username = usernameElem.innerText;
+
+      // 認証済か？
+      const isVerified = !!usernameElem.querySelector(
+        "[data-testid='icon-verified']",
+      );
+
+      // ユーザ名にアラビア文字が含まれるか？
+      const isArabic = /[\p{scx=Arabic}]+/u.test(username ?? "");
+
+      // ユーザ名に日本語が含まれているか？。
+      const isJapanese =
+        /[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}]/u.test(
+          username ?? "",
+        );
+
+      const current = userReply.get(screenname);
+
+      userReply.set(screenname, {
+        count: (current?.count ?? 0) + 1,
+        isVerified,
+        isArabic,
+        isJapanese,
+      });
+    });
+
+    tweets.forEach((elem) => {
+      const usernameElem = elem.querySelector("[data-testid='User-Name'] a");
+
+      if (!(usernameElem instanceof HTMLAnchorElement)) {
+        return;
+      }
+
+      const screenname = usernameElem.href?.split("/").at(-1)?.trim() ?? "";
 
       // 返信元と返信先が同一アカウントなら表示。
-      if (screenname && currentTweetScreenname === screenname) {
+      if (currentTweetScreenname === screenname) {
         return;
       }
 
-      // 認証済アカは非表示。
-      if (
-        userNameElem?.querySelector("[data-testid='icon-verified']")
-      ) {
-        hideTweet(elem);
-        return;
-      }
-
-      // ユーザ名にアラビア文字が含まれる場合は非表示。
-      if (/[\p{scx=Arabic}]+/u.test(userNameElem?.innerText || "")) {
+      // インプレゾンビは非表示。
+      const current = userReply.get(screenname);
+      if (current && isImpressionZombie(current)) {
         hideTweet(elem);
         return;
       }
