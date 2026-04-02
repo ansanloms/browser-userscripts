@@ -37,7 +37,7 @@
       return;
     }
 
-    [...timelineElement.children].forEach((element, index) => {
+    [...timelineElement.children].forEach((element) => {
       if (!(element instanceof HTMLElement)) {
         return;
       }

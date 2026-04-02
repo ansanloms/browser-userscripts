@@ -23,13 +23,20 @@ const hideTweet = (elem: Element) => {
   }
 };
 
-const isImpressionZombie = ({ count, isVerified, isArabic, isJapanese }: {
-  count: number;
-  isVerified: boolean;
-  isArabic: boolean;
-  isJapanese: boolean;
-}) => {
+const isImpressionZombie = (
+  { count, isVerified, isArabic, isJapanese, isEmojiOnly }: {
+    count: number;
+    isVerified: boolean;
+    isArabic: boolean;
+    isJapanese: boolean;
+    isEmojiOnly: boolean;
+  },
+) => {
   if (isArabic) {
+    return true;
+  }
+
+  if (isEmojiOnly) {
     return true;
   }
 
@@ -52,9 +59,10 @@ mutation(() => {
   const currentTweetUsernameElem = currentTweet?.querySelector(
     "[data-testid='User-Name'] a",
   );
-  const currentTweetScreenname = currentTweetUsernameElem instanceof HTMLAnchorElement
-    ? currentTweetUsernameElem.href?.split("/").at(-1)?.trim() ?? ""
-    : "";
+  const currentTweetScreenname =
+    currentTweetUsernameElem instanceof HTMLAnchorElement
+      ? currentTweetUsernameElem.href?.split("/").at(-1)?.trim() ?? ""
+      : "";
 
   //const reply = Number(
   //  currentTweet?.querySelector("[data-testid='reply']")?.getAttribute(
@@ -88,6 +96,7 @@ mutation(() => {
         isVerified: boolean;
         isArabic: boolean;
         isJapanese: boolean;
+        isEmojiOnly: boolean;
       }
     >();
 
@@ -115,6 +124,11 @@ mutation(() => {
           username ?? "",
         );
 
+      // ユーザ名が絵文字のみか？
+      const withoutEmojis = (username ?? "").replace(/[\p{Emoji}\s]/gu, "");
+      const isEmojiOnly = (username ?? "").trim().length > 0 &&
+        withoutEmojis.length === 0;
+
       const current = userReply.get(screenname);
 
       userReply.set(screenname, {
@@ -122,6 +136,7 @@ mutation(() => {
         isVerified,
         isArabic,
         isJapanese,
+        isEmojiOnly: isEmojiOnly || (current?.isEmojiOnly ?? false),
       });
     });
 

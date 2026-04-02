@@ -21,11 +21,11 @@
   button.addEventListener("click", async () => {
     const isEndOfPage = () => {
       // 現在のスクロール位置
-      const scrollTop = window.scrollY || window.pageYOffset;
+      const scrollTop = globalThis.scrollY || globalThis.pageYOffset;
       // ドキュメント全体の高さ
       const documentHeight = document.documentElement.scrollHeight;
       // ビューポートの高さ
-      const windowHeight = window.innerHeight;
+      const windowHeight = globalThis.innerHeight;
 
       // ページの末尾にいるかどうかを判定
       return Math.ceil(scrollTop + windowHeight) >= documentHeight;
@@ -85,7 +85,9 @@
           ];
 
           for (const _ of list) {
-            const nextButton = document.querySelector("button[aria-label='Next slide']");
+            const nextButton = document.querySelector(
+              "button[aria-label='Next slide']",
+            );
             if (nextButton instanceof HTMLElement) {
               nextButton.click();
             }
@@ -101,7 +103,9 @@
             }
           });
 
-          const closeButton = document.querySelector("button[aria-label='Close']");
+          const closeButton = document.querySelector(
+            "button[aria-label='Close']",
+          );
           if (closeButton instanceof HTMLElement) {
             closeButton.click();
           }
@@ -127,7 +131,7 @@
         return imageUrls;
       }
 
-      window.scrollTo({
+      globalThis.scrollTo({
         top: document.body.scrollHeight ||
           document.documentElement.scrollHeight,
       });
@@ -138,7 +142,7 @@
       );
     };
 
-    window.scrollTo({ top: 0 });
+    globalThis.scrollTo({ top: 0 });
     await sleep(1000);
 
     console.log(

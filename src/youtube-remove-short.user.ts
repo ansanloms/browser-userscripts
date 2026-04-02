@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube: Remove Short
 // @namespace    https://github.com/ansanloms/tampermonkey-scripts
-// @version      0.0.1
+// @version      0.0.2
 // @description  YouTube ショートを非表示にする。
 // @author       ansanloms
 // @match        https://www.youtube.com/*
@@ -16,7 +16,8 @@
   style.type = "text/css";
 
   style.innerText = `
-    ytd-reel-shelf-renderer {
+    ytd-reel-shelf-renderer,
+    #primary > ytd-rich-grid-renderer > #contents > ytd-rich-section-renderer {
       display: none !important;
     }
   `;
